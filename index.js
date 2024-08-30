@@ -1,6 +1,7 @@
 const express = require("express");
 const connectDB = require("./connect");
 const urlRoute = require("./routes/url");
+const userRoute=require("./routes/user")
 const staticRoute = require("./routes/staticRouter");
 const handleUrlGet = require("./controllers/url");
 const app = express();
@@ -24,6 +25,7 @@ app.set("views", path.resolve("./views"));
 
 app.use("/url", urlRoute);
 app.use("/", staticRoute);
+app.use("/user", userRoute);
 
 app.get("/url/:shortID", async (req, res) => {
   const shortID = req.params.shortID;
