@@ -9,8 +9,10 @@ const handleUrlCreate = async (req, res) => {
       shortID: shortID,
       redirectURl: redirectURl,
       visitHistory: [],
+      createdBy: req.user._id,
     });
-    return res.render("index", { id: shortID });
+    const urlForUser = await URL.find({ createdBy: req.user });
+    return res.render("url", { id: shortID, urls: urlForUser });
   } catch (err) {
     console.log(err);
     return res.status(500).json({

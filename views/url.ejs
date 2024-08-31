@@ -46,6 +46,39 @@
                   </button>
                 </div>
               </form>
+
+              <!-- Analytics Table -->
+              <% if (locals.urls) { %>
+
+              <h2 class="mt-5">URL Analytics</h2>
+              <table class="table table-striped mt-3">
+                <thead>
+                  <tr>
+                    <th scope="col">S.NO</th>
+                    <th scope="col">Short ID</th>
+                    <th scope="col">Redirect</th>
+                    <th scope="col">Clicks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% urls.forEach((url, index) => { %>
+                  <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= url.shortID %></td>
+                    <td>
+                      <a href="<%= url.redirectURl %>" target="_blank">
+                        <%= url.redirectURl.length > 30 ?
+                        url.redirectURl.substring(0, 30) + "..." :
+                        url.redirectURl %></a
+                      >
+                    </td>
+                    <td><%= url.visitHistory.length %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+
+              <% } %>
             </div>
           </div>
         </div>
